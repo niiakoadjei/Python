@@ -1,0 +1,175 @@
+
+
+# TIC-TAC-TOE FIELD
+
+#| | | | | | | |0
+#| | | | | | | |1
+#| | | | | | | |2
+#| | | | | | | |3
+#| | | | | | | |4
+#| | | | | | | |5
+#012345678911111
+#          01234
+
+# We create a function to Draw a Tic-Tac-Toe field
+# Let's use out temporary variable field as defined in the moves function
+def drawField(field):
+    for row in range(6):
+        #i.e. 0,1,2,3,4
+                # We map:      0,.,1,.,2
+        #if row%2 == 1:
+        #newRow = 6  # to convert any float number to integer
+        # print(" | | ")
+        for column in range(1,16):  # i.e. 0,1,2,3,4
+                                # We map:  0,.,1,.,2 to match our moves columns and rows
+
+            if column % 2 == 1:
+                newColumn = int(column / 2)  # to convert any float number to integer
+
+                if column != 16:
+                    print("|", end="")
+                else:
+                    print("")
+
+            else:
+                print(field[newColumn][row], end="")
+
+        else:
+            print("")
+
+Player = 1
+
+currentField = [[" "," "," "," "," "," "],[" "," "," "," "," "," "],[" "," "," "," "," "," "],[" "," "," "," "," "," "]
+
+# TIC-TAC-TOE FIELD
+
+#| | | | | | | |
+#| | | | | | | |
+#| | | | | | | |
+#| | | | | | | |
+#| | | | | | | |
+#| | | | | | | |
+
+
+# We create a function to Draw a Tic-Tac-Toe field
+# Let's use out temporary variable field as defined in the moves function
+def drawField(field):
+    for row in range(6):
+        #i.e. 0,1,2,3,4
+                # We map:      0,.,1,.,2
+        #if row%2 == 1:
+        #newRow = 6  # to convert any float number to integer
+        # print(" | | ")
+        for column in range(7):  # i.e. 0,1,2,3,4
+                                # We map:  0,.,1,.,2 to match our moves columns and rows
+
+            # if column % 2 == 1:
+            #     newColumn = int(column / 2)  # to convert any float number to integer
+
+            if column != 7:
+                print(field[column][row], end="")
+            else:
+                print("")
+
+        else:
+            print("")
+
+
+
+def checkForWin(field):
+    # Checking for horizontal tiles
+    boardHeight = len(currentField[0])
+    boardWidth = len(currentField)
+
+    for y in range(boardHeight):
+        for x in range(boardWidth - 3):
+            if field[x][y] == field[x + 1][y] == field[x + 2][y] == field[x + 3][y]:
+                print("PLAYER",Player,"WINS!")
+                return
+            # else:
+            #     continue
+
+    # Checking for vertical tiles
+    for x in range(boardWidth):
+        for y in range(boardHeight - 3):
+            if field[x][y] == field[x][y + 1] == field[x][y + 2] == field[x][y + 3]:
+                print("PLAYER",Player,"WINS")
+                return
+
+
+    # Checking for positive diagonal tiles (/)
+    for x in range(boardWidth - 3):
+        for y in range(3, boardHeight):
+            if field[x][y] == field[x + 1][y - 1] == field[x + 2][y - 2] == field[x + 3][y - 3]:
+                print("PLAYER",Player,"WINS")
+                return
+            # else:
+            #     continue
+
+    # Checking for positive diagonal tiles (\)
+    for y in range(boardHeight - 3):
+        for x in range(3, boardWidth):
+            if field[x][y] == field[x + 1][y + 1] == field[x + 2][y + 2] == field[x + 3][y + 3]:
+                print("PLAYER 1 WINS")
+
+
+
+Player = 1
+
+currentField = [[" "," "," "," "," "," "],[" "," "," "," "," "," "],[" "," "," "," "," "," "],[" "," "," "," "," "," "],[" "," "," "," "," "," "],[" "," "," "," "," "," "],[" "," "," "," "," "," "]]
+
+print(currentField)
+
+#moveRow = 5
+drawField(currentField)
+while(True): # means while(True == True)
+    print("Player's Turn: ",Player)
+
+    moveColumn = int(input("Please enter a column number (Hint: 0 - 6): \n"))
+
+    if Player == 1:
+        moveRow = 6
+        tile = "X"
+        for i in reversed(range(moveRow)):
+            moveRow = i
+        # Make move for Player 1
+
+            if currentField[moveColumn][moveRow] == " ":
+                currentField[moveColumn][moveRow] = "X"
+                #checkForWin(currentField)
+                break
+
+            else:
+                if currentField[moveColumn][0] == "X" or "O":
+                    print("Column is full. Select another column: ")
+
+
+
+        drawField(currentField)
+        Player = 2
+
+
+
+
+    else:
+        moveRow = 6
+        tile = "O"
+        # # Make move for Player 2
+        for i in reversed(range(moveRow)):
+            moveRow = i
+            if currentField[moveColumn][moveRow] == " ":
+                currentField[moveColumn][moveRow] = tile
+                break
+
+            else:
+                print("Column is full. Select another column: ")
+                continue
+
+
+        drawField(currentField)
+        Player = 1
+
+
+
+
+
